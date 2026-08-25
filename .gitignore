@@ -32,11 +32,13 @@ env/
 node_modules/
 npm-debug.log*
 yarn-error.log*
+local_server/.env
 
 # Variables de entorno
 .env
 .env.*
 !.env.example
+/2026/js/env.js
 
 # Build / despliegue
 .netlify/
@@ -48,5 +50,9 @@ build/
 *.tmp
 *.bak
 
-# Documentación interna del equipo organizador — no debe publicarse
+# Documentación de trabajo del equipo organizador — no debe publicarse
 docs-internas/
+docs/
+
+# Configuración local de Claude Code — no debe publicarse
+.claude/

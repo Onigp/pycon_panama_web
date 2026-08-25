@@ -10,6 +10,8 @@
    6. Acordeón        — preguntas frecuentes
    7. Contenido       — texto largo, enlaces
    8. Pie de página
+   9. Formularios   — registro y speaker
+   10. Sedes
 
    Todas las media queries están en responsive.css.
    ========================================================================== */
@@ -452,6 +454,9 @@ button[type="submit"], .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  border: none;
   min-height: 48px;            /* área táctil cómoda en móvil */
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-pill);
@@ -532,6 +537,83 @@ button[type="submit"], .btn {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--border);
+}
+
+/* --------------------------------------------------------------------------
+   Agenda / cronograma
+   -------------------------------------------------------------------------- */
+
+.schedule-container {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.session-card {
+  display: grid;
+  grid-template-columns: minmax(120px, 150px) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.session-card > div {
+  min-width: 0;
+}
+
+.session-time {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: var(--fs-sm);
+}
+
+.session-title {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+
+.session-speaker,
+.session-bio {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.session-bio {
+  margin-top: var(--space-2);
+}
+
+.session-badge {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.session-opening {
+  border-left-color: var(--highlight);
+}
+
+.session-keynote {
+  border-left-color: var(--accent);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-muted) 100%);
+}
+
+.session-break {
+  border-left-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.04);
 }
 
 
@@ -630,6 +712,85 @@ button[type="submit"], .btn {
   color: var(--accent-hover);
 }
 
+/* --- Documento largo (código de conducta, políticas) -------------------- */
+
+.prose h2 {
+  margin-top: var(--space-7);
+  color: var(--text);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-heading);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose ol {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-5);
+  list-style: decimal;
+}
+
+.prose strong {
+  color: var(--text);
+}
+
+/* Bloque destacado dentro del texto: la regla que no se puede pasar por alto. */
+.prose .callout {
+  padding: var(--space-4) var(--space-5);
+  background: var(--accent-softer);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.prose .callout > * + * {
+  margin-top: var(--space-3);
+}
+
+/* Variante para lo urgente: qué hacer si hay alguien en peligro. */
+.prose .callout--urgent {
+  background: rgba(255, 202, 58, 0.14);
+  border-left-color: var(--highlight);
+}
+
+/* Índice del documento: navegación, no lectura. */
+.doc-toc {
+  max-width: var(--measure);
+  margin-bottom: var(--space-7);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-toc h2 {
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-base);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.doc-toc ol {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-5);
+  list-style: decimal;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.doc-meta {
+  max-width: var(--measure);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
 
 /* ==========================================================================
    8. Pie de página
@@ -674,4 +835,196 @@ button[type="submit"], .btn {
 .footer-social a:hover {
   color: var(--accent);
   background: var(--accent-softer);
+}
+
+
+/* ==========================================================================
+   9. Formularios (Registro & Speaker)
+   ========================================================================== */
+
+.registro-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  align-items: start;
+  width: 100%;
+}
+
+.registro-aside,
+.registro-panel {
+  min-width: 0;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.25rem, 2vw, 2rem);
+  box-sizing: border-box;
+}
+
+.registro-aside {
+  background: linear-gradient(180deg, rgba(47, 140, 255, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+.registro-aside ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.registro-aside li + li {
+  margin-top: 0.6rem;
+}
+
+.registro-form {
+  display: grid;
+  gap: 1.1rem;
+  width: 100%;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.field label {
+  font-weight: 700;
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 3px solid rgba(47, 140, 255, 0.18);
+  border-color: var(--accent);
+}
+
+.checkboxes {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.checkbox-item {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.checkbox-item input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+}
+
+.status-message {
+  min-height: 1.5rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  word-break: break-word;
+}
+
+.status-message.error {
+  color: #d9534f;
+}
+
+.status-message.success {
+  color: #28a745;
+}
+
+
+/* ==========================================================================
+   10. Sedes
+   ========================================================================== */
+
+/* Dos sedes: una fila en escritorio, apiladas en móvil. Mismo ancho mínimo
+   que .card-grid para que el sitio mantenga un solo ritmo de tarjetas. */
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+.venue-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.venue-card h2 {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-heading);
+}
+
+.venue-mode {
+  color: var(--text-secondary);
+}
+
+.venue-details {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-soft);
+}
+
+.venue-detail dt {
+  margin-bottom: var(--space-1);
+  color: var(--text-secondary);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.venue-detail dd {
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+}
+
+/* El enlace al mapa queda al pie de la tarjeta aunque las direcciones
+   ocupen distinto alto. */
+.venue-map-link {
+  margin-top: auto;
 }
